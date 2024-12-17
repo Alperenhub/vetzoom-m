@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "vetzoom-m",
+    "name": "Vetzoom",
     "slug": "vetzoom-m",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "Vetzoom",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
