@@ -13,6 +13,7 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { cat, landingLogo } from "../constants/images";
+import Onboarding from "../components/Onboarding";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,9 +42,8 @@ export default function RootLayout() {
           locations={[1, 0.65, 0.2]}
           className="flex-1 justify-center items-center"
         >
-          <SafeAreaView className=" items-center justify-between ">
-            <Image source={landingLogo} resizeMode="contain" />
-            <Image source={cat} className="w-[200px] " resizeMode="contain" />
+          <SafeAreaView className=" items-center justify-between">
+            <Onboarding />
           </SafeAreaView>
         </LinearGradient>
         <StatusBar style="auto" />
