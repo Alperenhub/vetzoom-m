@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, SafeAreaViewBase, StyleSheet, View } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -34,11 +34,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <View className="flex-1 items-center justify-center">
-        <Link href={"/login"} className="text-2xl text-red-400">
-          Go to Login
-        </Link>
-      </View>
+      <SafeAreaView></SafeAreaView>
       <StatusBar style="auto" />
     </ThemeProvider>
   );

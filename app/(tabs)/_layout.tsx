@@ -1,50 +1,109 @@
-import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Tabs } from "expo-router";
+import { View, Image, Text, ImageSourcePropType } from "react-native";
+import { home, notification, cart, profile } from "../../constants/icons";
 
-import { HapticTab } from "@/components/HapticTab";
-import { IconSymbol } from "@/components/ui/IconSymbol";
-import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {},
-        }),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+interface TabIconProps {
+  icon: ImageSourcePropType; // Image kaynağı için doğru tip
+  name: string; // İsim, bir string olmalı
+  color: string; // Renk, bir string olmalı
+  focused: boolean; // Odaklanma durumu, boolean olmalı
 }
+
+const TabIcon: React.FC<TabIconProps> = ({ icon, name, color, focused }) => {
+  return (
+    <View className=" items-center pt-4">
+      <Image
+        tintColor={color}
+        source={icon}
+        resizeMode="contain"
+        className=" w-6 h-6 "
+      />
+    </View>
+  );
+};
+
+const TabsLayout = () => {
+  return (
+    <>
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: "#1B998B",
+          tabBarInactiveTintColor: "#979797",
+        }}
+      >
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: "Home",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => {
+              return (
+                <TabIcon
+                  name="Home"
+                  icon={home}
+                  color={color}
+                  focused={focused}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="notification"
+          options={{
+            title: "Notification",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => {
+              return (
+                <TabIcon
+                  name="Notification"
+                  icon={notification}
+                  color={color}
+                  focused={focused}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="cart"
+          options={{
+            title: "Cart",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => {
+              return (
+                <TabIcon
+                  name="Cart"
+                  icon={cart}
+                  color={color}
+                  focused={focused}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: "Profile",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => {
+              return (
+                <TabIcon
+                  name="Profile"
+                  icon={profile}
+                  color={color}
+                  focused={focused}
+                />
+              );
+            },
+          }}
+        />
+      </Tabs>
+    </>
+  );
+};
+
+export default TabsLayout;
