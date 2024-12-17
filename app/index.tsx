@@ -6,12 +6,13 @@ import {
 import { useFonts } from "expo-font";
 import { Link, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { SafeAreaView, SafeAreaViewBase, StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -34,7 +35,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <SafeAreaView></SafeAreaView>
+      <SafeAreaView>
+        <LinearGradient></LinearGradient>
+      </SafeAreaView>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
